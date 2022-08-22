@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //testing purpose for tailwindcss
-Route::get('/test', function(){
-    return view('test');
+Route::get('/', function(){
+    return view('customer.index');
 });
