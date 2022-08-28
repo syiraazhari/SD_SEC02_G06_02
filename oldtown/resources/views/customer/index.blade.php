@@ -34,10 +34,10 @@
     <div class="container mx-auto">
         <div class="mt-5 mx-5">
             <h2 class="text-center font-RobotoSlab text-3xl p-3 text-secondary">How to Order</h2>
-            <img src="{{ asset('/storage/step.png') }}" alt="" class="md:h-80 mx-auto rounded-md">
+            <img src="{{ asset('/storage/step.png') }}" alt="" class="lg:h-96 md:h-80 mx-auto rounded-md">
         </div>
     </div>
-    <main class="mt-5 container mx-auto">
+    <main class="mt-5 container mx-auto lg:w-3/6">
         <div class="bg-white rounded-lg shadow-md shadow-gray-300 mx-5 bg-no-repeat bg-right-bottom h-40"
             style="background-image: url('/storage/orderbg.png');">
             <a href="" class="">
@@ -49,7 +49,7 @@
         </div>
     </main>
 
-    <section class="container mx-auto my-5">
+    <section class="container mx-auto my-5 lg:w-3/6">
         <div class="flex justify-between">
             <div class="bg-white rounded-lg shadow-md shadow-gray-300 mx-5">
                 <a href="" class="">
