@@ -6,7 +6,6 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class RedirectIfAuthenticated
 {
@@ -28,16 +27,17 @@ class RedirectIfAuthenticated
                 $user = Auth::guard($guard);
 
                 // to admin dashboard
-                if ($user->hasRole('admin')) {
-                    return redirect(route('/admin/admin_dashboard'));
+                if($user->hasRole('admin')) {
+                    return redirect(route('admin_dashboard'));
                 }
 
                 // to user dashboard
-                elseif ($user->hasRole('staff')) {
-                    return redirect(route('/staff/dashboard'));
+                else if($user->hasRole('staff')) {
+                    return redirect(route('dashboard'));
                 }
             }
-            return $next($request);
         }
+
+        return $next($request);
     }
 }

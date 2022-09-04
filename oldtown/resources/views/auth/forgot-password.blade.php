@@ -1,84 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    @include('component.header')
-    <title>Forgot Password</title>
-</head>
+@section('content')
+    <x-body>
 
-<body class="overflow-hidden bg-background">
-    <div class="flex justify-center items-center h-screen mx-5">
-        <div class="flex flex-col items-center w-screen rounded-lg shadow-lg bg-white p-5 md:w-800">
-            <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-                <div class="p-5 mx-5 block">
-                    <h3 class="font-RobotoSlab font-bold text-lg border-b border-secondary p-5">OldTown White Coffee</h3>
-                    <span class="text-center block font-Roboto py-2">Forgot Password</span>
-                </div>
-                <div>
-                    <div class="w-full text-center">
-                        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <x-form-auth.flex class="h-screen">
 
-                        <!-- Validation Errors -->
-                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    </div>
-                    <div class="flex flex-col mt-5">
-                        <div class="form-control w-full md:w-screen max-w-xs">
-                            <label class="label" for="email">
-                                <span class="font-Roboto text-blackie">Email Adress</span>
-                            </label>
-                            <input type="email" name="email" id="email" placeholder="Your Email Address"
-                                class="input input-primary w-full max-w-xs" />
-                        </div>
-                        <button type="submit" class="btn btn-primary my-5">
-                            Reset Your Password
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
+            <x-form-auth.card-auth>
 
-</html>
+                <x-form-auth.auth-title title="Forgot Password" subtitle="OldTown White Coffee" />
 
+                <x-form-auth.flex class="flex-col w-full">
+                    <form method="POST" action="{{ route('password.email') }}" class="w-full flex items-center flex-col">
+                        @csrf
 
+                        @if (session('status'))
+                            <div x-transition.opacity x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 1000)"
+                                class="alert alert-success rounded-sm shadow-sm">
+                                <x-alert.success>
+                                    {{ session('status') }}
+                                </x-alert.success>
+                            </div>
+                        @endif
 
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <x-alert.error>
+                                    {{ $error }}
+                                </x-alert.error>
+                            @endforeach
+                        @endif
 
-{{-- <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+                        <x-form-auth.form-class>
+                            <label class="text-secondary block font-roboto font-medium" for="email">Email Address</label>
+                            <x-input placeholder="Insert Email Address" name='email' id='email' />
 
+                        </x-form-auth.form-class>
+                        <x-button type="submit" class="px-5">
+                            reset password
+                        </x-button>
+                        <a href="{{ route('login') }}">
+                            <div class=" hover:underline text-center text-gray-500 mt-5">
+                                Back to Login
+                            </div>
+                        </a>
+                    </form>
+                </x-form-auth.flex>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+            </x-form-auth.card-auth>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-
-
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Emaidl Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout> --}}
+        </x-form-auth.flex>
+    </x-body>
+@endsection

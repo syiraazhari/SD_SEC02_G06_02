@@ -17,18 +17,17 @@ class StaffAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-
         if( Auth::check() )
         {
             /** @var User $user */
             $user = Auth::user();
 
-            // if user is admin take him to his dashboard
+            // if user is not admin take him to his dashboard
             if ( $user->hasRole('admin') ) {
                 return redirect(route('admin_dashboard'));
             }
 
-            // allow staff to proceed with request
+            // allow admin to proceed with request
             else if ( $user->hasRole('staff') ) {
                 return $next($request);
             }

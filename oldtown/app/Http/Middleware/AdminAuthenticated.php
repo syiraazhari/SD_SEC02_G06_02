@@ -17,15 +17,14 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-
         if( Auth::check() )
         {
             /** @var User $user */
             $user = Auth::user();
 
-            // if user is staff take him to staff dashboard
+            // if user is not admin take him to his dashboard
             if ( $user->hasRole('staff') ) {
-                return redirect('staff/dashboard');
+                return redirect(route('staff_dashboard'));
             }
 
             // allow admin to proceed with request
@@ -33,6 +32,7 @@ class AdminAuthenticated
                 return $next($request);
             }
         }
+
         abort(403);  // permission denied error
     }
 }
