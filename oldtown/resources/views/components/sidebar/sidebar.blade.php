@@ -1,7 +1,8 @@
-<div class="w-64 h-screen hidden md:block px-4 py-8 bg-white border-r shadow-gray-400 shadow-md">
+<div class="w-64 h-screen hidden md:block px-4 py-8 bg-secondary-600 border-r text-white shadow-gray-400 shadow-md">
 
     {{-- dashboard --}}
-    <a href="" class="mb-3 block">
+    <a href="{{ route('staff_dashboard') }}"
+        class="mb-3 block {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
 
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -17,7 +18,7 @@
     </a>
 
     {{-- Order --}}
-    <a href="" class="mb-3 block">
+    <a href="" class="mb-3 block {{ request()->segment(2) == 'order' ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
 
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -33,7 +34,7 @@
     </a>
 
     {{-- Menu --}}
-    <a href="" class="mb-3 block">
+    <a href="" class="mb-3 block {{ request()->segment(2) == 'menu' ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
 
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -48,8 +49,8 @@
         </x-sidebar.sidebar-link>
     </a>
 
-    {{-- Menu --}}
-    <a href="" class="mb-3 block">
+    {{-- Report --}}
+    <a href="" class="mb-3 block {{ request()->segment(2) == 'report' ? 'active' : '' }} ">
         <x-sidebar.sidebar-link>
 
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

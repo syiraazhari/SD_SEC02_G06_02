@@ -1,7 +1,6 @@
 <div class="py-3 px-5 border-r border-b lg:border-none lg:col-span-1">
 
-    <a href="{{ route('view_profile') }}">
-
+    <a href="{{ route('view_profile') }}" class="mb-3 block {{ request()->is('profile') ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
             <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -15,9 +14,9 @@
 
 
 
-    <a href="{{ route('edit_profile') }}">
+    <a href="{{ route('edit_profile') }}" class="mb-3 block {{ request()->is('edit-profile') ? 'active' : '' }}">
 
-        <x-sidebar.sidebar-link class="my-3">
+        <x-sidebar.sidebar-link>
             <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -29,7 +28,7 @@
     </a>
 
 
-    <a href="{{ route('edit_password') }}">
+    <a href="{{ route('edit_password') }}" class="mb-3 block {{ request()->is('edit-password') ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
             <svg class="h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">

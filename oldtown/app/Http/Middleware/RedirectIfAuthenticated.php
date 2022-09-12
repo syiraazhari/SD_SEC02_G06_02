@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 /** @var User $user */
-                $user = Auth::guard($guard);
+                $user = Auth::user();
 
                 // to admin dashboard
                 if($user->hasRole('admin')) {

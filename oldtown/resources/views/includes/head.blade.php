@@ -5,7 +5,7 @@
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 <script src="https://unpkg.com/alpinejs" defer></script>
 @vite('resources/css/app.css')
-<title>Document</title>
+<title>OldTown White Coffee</title>
 <style>
     [x-cloack] {
         display: none;

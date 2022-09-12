@@ -15,6 +15,7 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
     public function create()
     {
         return view('auth.login');

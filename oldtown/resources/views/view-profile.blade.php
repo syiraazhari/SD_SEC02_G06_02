@@ -38,8 +38,8 @@
                                         <img src="{{ asset('storage/' . Auth::user()->profile_images) }}"
                                             alt="profile_images" class="h-64 rounded-lg relative">
                                     @else
-                                        <img src="https://images.unsplash.com/photo-1524024973431-2ad916746881?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z29hdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                                            alt="" class="h-64 rounded-lg relative">
+                                        <img src="{{ asset('storages/images/oldtownlogo.png') }}" alt=""
+                                            class="h-64 rounded-lg relative">
                                     @endif
 
 
