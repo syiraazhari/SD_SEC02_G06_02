@@ -33,7 +33,7 @@ class RedirectIfAuthenticated
 
                 // to user dashboard
                 else if($user->hasRole('staff')) {
-                    return redirect(route('dashboard'));
+                    return redirect(route('staff_dashboard'));
                 }
             }
         }

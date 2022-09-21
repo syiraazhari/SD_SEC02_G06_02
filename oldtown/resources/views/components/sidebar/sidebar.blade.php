@@ -1,4 +1,4 @@
-<div class="w-64 h-screen hidden md:block px-4 py-8 bg-secondary-600 border-r text-white shadow-gray-400 shadow-md">
+<div class="w-64 hidden md:block  h-screen px-4 py-8 bg-secondary-600 border-r text-white shadow-gray-400 shadow-md">
 
     {{-- dashboard --}}
     <a href="{{ route('staff_dashboard') }}"
