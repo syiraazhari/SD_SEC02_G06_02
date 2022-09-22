@@ -31,7 +31,7 @@ module.exports = {
                     600: "#57210B"
                 },
 
-                background: "#F5F7FB",
+                background: "#EEEEEE",
             },
             borderRadius: {
                 'sm': '5px'

@@ -38,8 +38,7 @@
                                         <img src="{{ asset('storage/' . Auth::user()->profile_images) }}"
                                             alt="profile_images" class="h-64 rounded-lg relative">
                                     @else
-                                        <img src="{{ asset('storage/oldtownlogo.png') }}" alt=""
-                                            class="h-64 rounded-lg relative">
+                                        <img src="{{ asset('') }}" alt="" class="h-64 rounded-lg relative">
                                     @endif
 
 

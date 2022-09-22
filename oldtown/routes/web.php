@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth', 'staff'], 'prefix' => 'staff'], function 
 // admin protected routes
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard',  [HomeController::class, 'viewDashboard'])->name('admin_dashboard');
-
+    Route::get('/staff', [StaffController::class, 'viewAllStaff'])->name('view-staff');
+    Route::get('admin/view-staff/{id}', [StaffController::class, 'view']);
 });
 
 
