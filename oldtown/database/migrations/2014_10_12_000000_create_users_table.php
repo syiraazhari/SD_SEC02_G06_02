@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,7 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        $password = 'oldtown@123';
+        $hashedPassword = Hash::make($password);
+
+        Schema::create('users', function (Blueprint $table) use($hashedPassword) {
 
             $table->id();
             $table->string('first_name');
@@ -21,7 +25,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('email')->unique();
             $table->string('contact_number');
-            $table->string('password');
+            $table->string('password')->default($hashedPassword);
             $table->text('address');
             $table->rememberToken();
             $table->timestamps();

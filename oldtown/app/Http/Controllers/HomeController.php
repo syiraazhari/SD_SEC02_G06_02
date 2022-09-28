@@ -35,7 +35,6 @@ class HomeController extends Controller
             $image = $request->image->store('profile_images');
         }
 
-
         $user->update([
             'profile_images' => $image
         ]);

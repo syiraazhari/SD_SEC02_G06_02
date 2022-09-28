@@ -37,8 +37,6 @@
                                             <img class="img-preview max-h-56 rounded-lg">
                                         @endif
 
-
-
                                         <div class="my-3">
                                             <br>
                                             <input
@@ -46,7 +44,7 @@
                                                 @error('image') border-red-500 text-red-500 bg-red-300 @enderror"
                                                 id="image" type="file" onchange="previewImage()" name="image">
                                             <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG or JPEG
-                                                (Max: 5048mb)</p>
+                                                (Max: 5048kb)</p>
                                             @error('image')
                                                 <p class="text-red-500">{{ $message }}</p>
                                             @enderror

@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/test', function () {
-    return view('edit-profile');
-});
 
 Route::middleware(['auth'])->group(function(){
 
@@ -33,10 +30,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/edit-password', [HomeController::class, 'updatePassword'])->name('update_password');
     Route::get('/edit-image', [HomeController::class, 'viewEditImage'])->name('edit_image');
     Route::post('/edit-image', [HomeController::class, 'updateImage'])->name('update_image');
-
 });
-
-
 
 
 // staff protected routes
@@ -48,8 +42,15 @@ Route::group(['middleware' => ['auth', 'staff'], 'prefix' => 'staff'], function 
 // admin protected routes
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard',  [HomeController::class, 'viewDashboard'])->name('admin_dashboard');
+
+    // Staff Function
     Route::get('/staff', [StaffController::class, 'viewAllStaff'])->name('view-staff');
-    Route::get('admin/view-staff/{id}', [StaffController::class, 'view']);
+    Route::get('staff/view-staff/{id}', [StaffController::class, 'show']);
+    Route::get('staff/add-staff', [StaffController::class, 'viewAddStaff']);
+    Route::post('staff/add-staff', [StaffController::class, 'store'])->name('add-staff');
+    Route::get('staff/edit-staff/{id}', [StaffController::class, 'edit']);
+    Route::post('staff/edit-staff/{id}', [StaffController::class, 'update'])->name('update-staff');
+    Route::delete('staff/{id}', [StaffController::class, 'delete']);
 });
 
 
