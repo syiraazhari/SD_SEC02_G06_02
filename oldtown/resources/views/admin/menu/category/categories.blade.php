@@ -16,9 +16,9 @@
                             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
 
-                    <h4 class="px-5 text-2xl">Staff</h4>
+                    <h4 class="px-5 text-2xl">Menu</h4>
                 </div>
-                <x-breadcrumbs-text Title="Staff" subtitle="View All Staff" />
+                <x-breadcrumbs-text Title="Category" subtitle="All Category" />
 
                 @if (session('status'))
                     <div x-transition.opacity x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 1000)">
@@ -29,96 +29,73 @@
                 @endif
 
                 <div class="bg-white p-3">
-                    <div class="flex justify-end">
-
+                    <div class="flex justify-end mb-5">
                         <div class="flex items-center mx-3">
-                            <a href="staff/add-staff"
+                            <a href="category/add-category"
                                 class="px-5 py-2 block rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
-                                add new staff
+                                add new Category
                             </a>
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto mt-5 shadow-sm rounded-sm border mb-5">
-                        <table class="w-full text-sm text-gray-500 break-normal text-center">
+
+                    <div class="overflow-x-auto relative border shadow-md sm:rounded-lg mx-3">
+                        <table class="w-1/2 text-sm text-left text-gray-500 m-5 border">
                             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
-                                Staff
-                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">List of Staff
+                                Categories
+                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">List of Menu Categories
                                 </p>
                             </caption>
 
-                            <thead class="text-xs text-gray-700 uppercase bg-background ">
+                            <thead class="text-xs text-gray-700 uppercase bg-background">
                                 <tr>
-                                    <th scope="col" class="py-3">
+                                    <th scope="col" class="py-3 px-6">
                                         No
                                     </th>
-                                    <th scope="col" class="py-3">
-                                        Full Name
-                                    </th>
+
                                     <th scope="col" class="py-3 px-6">
-                                        Email
+                                        Name
                                     </th>
+
                                     <th scope="col" class="py-3 px-6">
-                                        Contact Number
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Birthdate
-                                    </th>
-                                    <th scope="col" class="py-3 px-6 text-center sr-only">
-                                        <span>Action</span>
+                                        <span class="sr-only">Action</span>
                                     </th>
                                 </tr>
                             </thead>
 
-                            <tbody class="alldata">
-                                @forelse ($allstaff as $staff)
-                                    <tr class="bg-white border-b hover:bg-gray-50">
-                                        <td class="py-4">
+                            <tbody>
+                                @forelse ($categories as $category)
+                                    <tr class="border-b border-b-gray-200">
+
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $loop->iteration }}
-                                        </td>
-
-                                        <td class="py-4">
-                                            {{ $staff->first_name }} {{ $staff->last_name }}
-                                        </td>
-
+                                        </th>
                                         <td class="py-4 px-6">
-                                            {{ $staff->email }}
+                                            {{ $category->name }}
                                         </td>
 
-                                        <td class="py-4 px-6">
-                                            {{ $staff->contact_number }}
-                                        </td>
+                                        <td class="py-4 px-6 text-right">
+                                            <a href="category/edit-category/{{ $category->id }}"
+                                                class="mx-5 font-medium text-emerald-600 hover:underline">Edit
+                                            </a>
 
-                                        <td class="py-4 px-6">
-                                            {{ $staff->birthdate }}
-                                        </td>
-
-                                        <td class="py-4 md:px-6 text-center">
-                                            <a href="staff/view-staff/{{ $staff->id }}"
-                                                class="mx-5 font-medium text-blue-600 hover:underline">View</a>
-                                            <a href="staff/edit-staff/{{ $staff->id }}"
-                                                class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
-                                            <button data-id="{{ $staff->id }}" class="font-medium text-red-600 hover:underline"
+                                            <button data-id="{{ $category->id }}" class="font-medium text-red-600 hover:underline"
                                                 onclick="$('#dataid').val($(this).data('id')); $('#showmodal').modal('show');">Delete
                                             </button>
+
                                         </td>
                                     </tr>
-
                                 @empty
-                                <tr>
-                                    <td colspan="6" class="pt-5">
-                                        There is no data
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="pl-5 p-3">
+                                            There is no data
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
-
-                        <div class="m-5">
-                            {{ $allstaff->links() }}
-                        </div>
                     </div>
-
                 </div>
             </div>
         </x-flex-view>
@@ -126,7 +103,7 @@
         <div id="showmodal" tabindex="-1" class="hidden">
             <div class="relative p-4 w-full max-w-md h-full md:h-auto">
                 <div>
-                    <form action="{{ route('delete-staff') }}" method="POST">
+                    <form action="{{ route('delete-category') }}" method="POST">
                         @csrf
                         @method('delete')
                         <div class="p-6 text-center">
@@ -136,7 +113,7 @@
                                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
-                                delete this staff?</h3>
+                                delete this category?</h3>
 
                             <input type="hidden" name="dataid" id="dataid" value="" />
 
@@ -155,12 +132,14 @@
             </div>
         </div>
 
+
         <script>
             const targetEl = document.getElementById('dropdown-example');
             targetEl.style.display = "block";
         </script>
 
-        @include('includes.jquery')
-
+        <!-- jQuery Modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     </x-body>
 @endsection

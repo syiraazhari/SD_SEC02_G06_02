@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
     return view('auth.login');
+});
+
+Route::get('/test', function () {
+    return view('admin.menu.menus.view-menu');
 });
 
 
@@ -50,7 +56,21 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::post('staff/add-staff', [StaffController::class, 'store'])->name('add-staff');
     Route::get('staff/edit-staff/{id}', [StaffController::class, 'edit']);
     Route::post('staff/edit-staff/{id}', [StaffController::class, 'update'])->name('update-staff');
-    Route::delete('staff/{id}', [StaffController::class, 'delete']);
+    Route::delete('staff/delete', [StaffController::class, 'delete'])->name('delete-staff');
+
+    //Category Menu Function
+    Route::get('menu/category', [CategoryController::class, 'index'])->name('category-view');
+    Route::get('menu/category/add-category', [CategoryController::class, 'create']);
+    Route::post('menu/category/add-category', [CategoryController::class, 'store'])->name('add-category');
+    Route::get('menu/category/edit-category/{id}', [CategoryController::class, 'edit']);
+    Route::post('menu/category/edit-category/{id}', [CategoryController::class, 'update'])->name('update-category');
+    Route::delete('category/delete', [CategoryController::class, 'destroy'])->name('delete-category');
+
+    //Menu Function
+    Route::get('menu/view-menu', [MenuController::class, 'index'])->name('menu-view');
+    Route::get('menu/view-single-menu/{id}', [MenuController::class, 'show'])->name('view-single-menu');
+    Route::delete('menu/delete', [MenuController::class, 'destroy'])->name('delete-menu');
+
 });
 
 

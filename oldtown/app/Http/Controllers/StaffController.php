@@ -51,8 +51,7 @@ class StaffController extends Controller
         }
 
         User::create($validatedData);
-        $this->sendMail($request->email, $request->first_name, $request->last_name);
-
+        //$this->sendMail($request->email, $request->first_name, $request->last_name);
         return redirect()->route('view-staff')->with('status', 'Staff Succesfully Added');
     }
 
@@ -76,10 +75,10 @@ class StaffController extends Controller
             'image' => 'image|mimes:png,jpg,jpeg|max:5048',
             'first_name' => 'required',
             'last_name' => 'required',
-            'birthdate' => 'required',
+            'birthdate' => 'required|date',
             'contact_number' => 'required',
             'email' => 'unique:users,email,'.$id,
-            'address' => 'required'
+            'address' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
@@ -93,8 +92,9 @@ class StaffController extends Controller
         return redirect()->route('view-staff')->with('status', 'Staff Succesfully Updated');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
+        $id = $request->dataid;
         DB::table('users')->delete($id);
         return redirect(route('view-staff'));
     }
@@ -103,7 +103,6 @@ class StaffController extends Controller
     {
         $name = $first_name . ' ' . $last_name;
         Mail::to($email)->send(new succesAddStaff($email, $name));
-        return redirect()->route('view-staff')->with('status', 'Staff Succesfully Added');
     }
 
 
