@@ -25,7 +25,9 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $categories = DB::table('categories')->get();
+
+        return view('admin.menu.menus.add-menu')->with(['categories' => $categories]);
     }
 
     /**
@@ -36,7 +38,26 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'menu_images' => 'required|image|mimes:png,jpg,jpeg|max:5048',
+            'menu_name' => 'required',
+            'cost_price' => 'required',
+            'selling_price' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+            'created_at' => now(),
+        ]);
+
+
+        if ($request->file('menu_images')) {
+            $validatedData['menu_images'] = $request->file('menu_images')->store('menu_images');
+        }
+
+        Menu::create($validatedData);
+
+        return redirect()
+            ->route('menu-view')
+            ->with('status', 'Menu Succesfully Added');
     }
 
     /**
@@ -60,7 +81,14 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menus = Menu::where('id', $id)->get();
+        $categories = DB::table('categories')->get();
+
+        return view('admin.menu.menus.edit-menu')
+                ->with([
+                    'menus' => $menus,
+                    'categories' => $categories
+                ]);
     }
 
     /**
@@ -72,7 +100,26 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $menu = DB::table('menus')->where('id', $id);
+
+        $validatedData = $request->validate([
+            'menu_images' => 'image|mimes:png,jpg,jpeg|max:5048',
+            'menu_name' => 'required',
+            'cost_price' => 'required',
+            'selling_price' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+            'created_at' => now(),
+        ]);
+
+
+        if($request->file('menu_images')){
+            $validatedData['menu_images'] = $request->file('menu_images')->store('menu_images');
+        }
+
+        $menu->update($validatedData);
+
+        return redirect()->route('menu-view')->with('status', 'Menu Succesfully Updated');
     }
 
     /**

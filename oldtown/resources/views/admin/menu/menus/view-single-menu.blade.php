@@ -17,10 +17,7 @@
                     <div class="bg-white border">
                         <div class="flex flex-col py-3 items-center justify-center border">
                             @if ($menu->menu_images)
-                                <img src="https://via.placeholder.com/800x600.png/{{ $menu->menu_images }}"
-                                    alt="profile_images" class="h-64 my-5 rounded-lg">
-                            @else
-                                <img src="{{ asset('storage/oldtownlogo.png') }}" alt="profile_images"
+                                <img src="{{ asset('storage/' . $menu->menu_images) }}" alt="menu_images"
                                     class="h-64 my-5 rounded-lg">
                             @endif
                         </div>

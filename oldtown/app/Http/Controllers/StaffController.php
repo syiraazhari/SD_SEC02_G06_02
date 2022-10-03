@@ -34,7 +34,6 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'image' => 'image|mimes:png,jpg,jpeg|max:5048',
             'first_name' => 'required',

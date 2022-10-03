@@ -3,8 +3,8 @@
         <div class="mx-3 w-1/3">
             <div class="relative">
                 <div class="flex absolute inset-y-0 right-3 items-center pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-secondary-500" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-hidden="true" class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
@@ -16,7 +16,7 @@
         </div>
 
         <div class="flex items-center mx-3">
-            <a href="staff/add-staff"
+            <a href="{{ route('add-menu') }}"
                 class="px-5 py-2 block rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
                 add new menu
             </a>
@@ -54,7 +54,7 @@
 
             </thead>
             <tbody>
-                @forelse ( $menus as $menu)
+                @forelse ($menus as $menu)
                     <tr class="bg-white border-b">
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                             {{ $menu->menu_name }}
@@ -69,10 +69,10 @@
                             {{ $menu->selling_price }}
                         </td>
                         <td class="py-4 px-6">
-                            <a href="{{ route('view-single-menu', $menu->id ) }}" class="font-medium text-blue-600 hover:underline">View</a>
+                            <a href="{{ route('view-single-menu', $menu->id) }}"
+                                class="font-medium text-blue-600 hover:underline">View</a>
 
-                            <a href=""
-                                class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
+                            <a href="edit-menu/{{ $menu->id }}" class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
                             <button data-id="{{ $menu->id }}" class="font-medium text-red-600 hover:underline"
                                 onclick="$('#dataid').val($(this).data('id')); $('#showmodal').modal('show');">Delete
                             </button>

@@ -69,7 +69,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     //Menu Function
     Route::get('menu/view-menu', [MenuController::class, 'index'])->name('menu-view');
     Route::get('menu/view-single-menu/{id}', [MenuController::class, 'show'])->name('view-single-menu');
+    Route::get('menu/add-menu', [MenuController::class, 'create']);
+    Route::post('menu/add-menu', [MenuController::class, 'store'])->name('add-menu');
     Route::delete('menu/delete', [MenuController::class, 'destroy'])->name('delete-menu');
+    Route::get('menu/edit-menu/{id}', [MenuController::class, 'edit']);
+    Route::post('menu/edit-menu/{id}', [MenuController::class, 'update'])->name('edit-menu');
 
 });
 
