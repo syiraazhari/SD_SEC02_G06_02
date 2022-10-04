@@ -15,11 +15,9 @@ class ShowMenus extends Component
 
     public function render()
     {
-
-        return view('livewire.show-menus', [
-            'menus' => Menu::when($this->term, function($query, $term){
-                return $query->where('menu_name', 'LIKE', "%$term%");
-                })->paginate(5)
-        ]);
+        $term = '%' . $this->term . '%';
+        $menus = Menu::with('category')
+                                ->where('menu_name', 'LIKE', "$term")->paginate(3);
+        return view('livewire.show-menus')->with('menus', $menus);
     }
 }
