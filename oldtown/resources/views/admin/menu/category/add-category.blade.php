@@ -27,6 +27,14 @@
                     </a>
                 </div>
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <x-alert.error>
+                            {{ $error }}
+                        </x-alert.error>
+                    @endforeach
+                @endif
+
                 <div class="bg-white">
                     <form action="{{route('add-category')}}" method="POST">
                         @csrf

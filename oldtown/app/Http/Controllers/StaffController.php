@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\succesAddStaff;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'image' => 'image|mimes:png,jpg,jpeg|max:5048',
+            'profile_images' => 'image|mimes:png,jpg,jpeg|max:5048',
             'first_name' => 'required',
             'last_name' => 'required',
             'birthdate' => 'required',
@@ -45,12 +46,14 @@ class StaffController extends Controller
             'created_at' => now()
         ]);
 
-        if($request->file('image')){
-            $validatedData['image'] = $request->file('image')->store('profile_images');
+        if($request->file('profile_images')){
+            $validatedData['profile_images'] = $request->file('profile_images')->store('profile_images');
         }
 
+        $validatedData['birthdate'] = Carbon::createFromFormat('m/d/Y', $request->birthdate)->format('Y-m-d');
+
         User::create($validatedData);
-        //$this->sendMail($request->email, $request->first_name, $request->last_name);
+        $this->sendMail($validatedData['email'], $validatedData['first_name'], $validatedData['last_name']);
         return redirect()->route('view-staff')->with('status', 'Staff Succesfully Added');
     }
 
@@ -70,21 +73,26 @@ class StaffController extends Controller
     public function update(Request $request, $id)
     {
         $staff = DB::table('users')->where('id', $id);
-        $rules = [
-            'image' => 'image|mimes:png,jpg,jpeg|max:5048',
-            'first_name' => 'required',
+
+        $validatedData = $request->validate([
+            'profile_images' => 'image|mimes:png,jpg,jpeg|max:5048',
+            'first_name' => 'required|regex:/^[a-zA-Z]+$/u',
             'last_name' => 'required',
             'birthdate' => 'required|date',
-            'contact_number' => 'required',
-            'email' => 'unique:users,email,'.$id,
+            'contact_number' => 'required|phone:MY',
+            'email' => 'email:rfc,dns|unique:users,email,'.$id,
             'address' => 'required',
-        ];
+        ]);
 
-        $validatedData = $request->validate($rules);
+        $validatedData['birthdate'] = Carbon::createFromFormat('m/d/Y', $request->birthdate)->format('Y-m-d');
 
-        if($request->file('image')){
-            $validatedData['image'] = $request->file('image')->store('profile_images');
+        if($request->file('profile_images')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['profile_images'] = $request->profile_images->store('profile_images');
         }
+
 
         $staff->update($validatedData);
 
@@ -93,7 +101,10 @@ class StaffController extends Controller
 
     public function delete(Request $request)
     {
-        $id = $request->dataid;
+        $newarr = explode(',', $request->dataid);
+        $id = $newarr[0];
+        $image = $newarr[1];
+        Storage::delete($image);
         DB::table('users')->delete($id);
         return redirect(route('view-staff'));
     }
@@ -102,6 +113,7 @@ class StaffController extends Controller
     {
         $name = $first_name . ' ' . $last_name;
         Mail::to($email)->send(new succesAddStaff($email, $name));
+        return redirect()->route('view-staff')->with('status', 'Staff Succesfully Added');
     }
 
 

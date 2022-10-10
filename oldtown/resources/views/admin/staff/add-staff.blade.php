@@ -37,7 +37,7 @@
                                 <input
                                     class="block text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer  focus:outline-none
                                 @error('image') border-red-500 text-red-500 bg-red-300 @enderror"
-                                    id="image" type="file" onchange="previewImage()" name="image">
+                                    id="image" type="file" onchange="previewImage()" name="profile_images">
                                 <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG or JPEG
                                     (Max: 5048kb)
                                 </p>
@@ -63,7 +63,12 @@
                             <div>
                                 <div class="my-2">
                                     <label class="text-secondary" for="birthdate">Birthdate</label>
-                                    <x-input type="date" name='birthdate' id='birthdate' required />
+                                    <div class="relative">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <input name="birthdate" id="birthdate" datepicker datepicker-orientation="bottom" datepicker-autohide type="text" class="bg-gray-50 border border-slate-800 text-gray-900 sm:text-sm rounded-lg focus:ring-slate-800 focus:border-slate-800 focus:border-2 block w-full pl-10 p-2.5">
+                                    </div>
                                 </div>
                             </div>
 

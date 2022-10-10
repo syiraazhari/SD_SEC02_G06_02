@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 @foreach ($staff as $staff)
-                    <div class="bg-white border">
+                    <div class="bg-white border p-5">
                         <div class="flex flex-col py-3 items-center justify-center border">
                             @if ($staff->profile_images)
                                 <img src="{{ asset('storage/' . $staff->profile_images) }}" alt="profile_images"
@@ -29,6 +29,8 @@
                             <div class="border-b py-2 font-bold">{{ $staff->first_name . ' ' . $staff->last_name }}</div>
                             <div class="border-b border-r py-2">Birthdate</div>
                             <div class="border-b py-2">{{ $staff->birthdate }}</div>
+                            <div class="border-b border-r py-2">Email Address</div>
+                            <div class="border-b py-2">{{ $staff->email }}</div>
                             <div class="border-b border-r py-2">Contact Number</div>
                             <div class="border-b py-2">{{ $staff->contact_number }}</div>
                             <div class="border-b border-r py-2">Address</div>

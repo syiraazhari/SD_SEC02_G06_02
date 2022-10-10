@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +51,12 @@ class HomeController extends Controller
     public function viewDashboard()
     {
         $staffCount = User::where('role', 'staff')->count() ;
+        $menuCount = Menu::count();
 
-        return view('dashboard')->with(['staffcount' => $staffCount]);
+        return view('dashboard')->with([
+            'staffcount' => $staffCount,
+            'menuCount' => $menuCount
+        ]);
     }
 
     public function viewEditPassword()

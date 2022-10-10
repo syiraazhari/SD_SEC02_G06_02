@@ -16,10 +16,22 @@ module.exports = {
                 'roboto': ['Roboto', 'sans-serif'],
                 'prompt': ['Prompt', 'sans-serif'],
                 'Ubuntu': ['Ubuntu', 'sans-serif'],
-                'robotoSlab': ['Roboto Slab', 'serif']
+                'robotoSlab': ['Roboto Slab', 'serif'],
+                seoulHangang: ['SeoulHangang', 'serif']
             },
             width: {
-                500: '500px'
+                500: '500px',
+                600: '600px',
+                700: '700px',
+                250: '250px',
+                350: '350px'
+            },
+
+            height: {
+                400: '400px',
+                350: '350px',
+                550: '550px',
+                '75vh': '75vh'
             },
 
             colors: {

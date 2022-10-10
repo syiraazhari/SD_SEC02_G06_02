@@ -33,36 +33,49 @@
         </x-sidebar.sidebar-link>
     </a>
 
-    <div class="mb-3 flex items-center px-4 py-2 transition-colors duration-200 transform rounded-md hover:border-primary hover:border  hover:text-primary">
-        <button type="button" class="flex items-center justify-between" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+    <div
+        class="mb-3 flex items-center px-4 py-2 transition-colors duration-200 transform rounded-md hover:border-primary hover:border  hover:text-primary">
+        <button type="button" class="flex items-center justify-between" aria-controls="dropdown-example"
+            data-collapse-toggle="dropdown-example">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                </svg>
-                <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Menu</span>
-                <svg sidebar-toggle-item class="w-6 h-6 ml-5 block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </svg>
+            <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Menu</span>
+            <svg sidebar-toggle-item class="w-6 h-6 ml-5 block" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
         </button>
     </div>
     <ul id="dropdown-example" class="hidden py-2 space-y-2">
+        @if (Auth::user()->role === 'admin')
             <li data-accordion="open">
-                <a href="{{ route('category-view') }}" class="mb-3 ml-5 block {{ (request()->is('admin/menu/category')) ? 'active' : '' }}">
+                <a href="{{ route('category-view') }}"
+                    class="mb-3 ml-5 block {{ request()->is('admin/menu/category') ? 'active' : '' }}">
                     <x-sidebar.sidebar-link>
                         <x-sidebar.sidebar-text>
-                           View Category
+                            View Category
                         </x-sidebar.sidebar-text>
                     </x-sidebar.sidebar-link>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('menu-view') }}" class="mb-3 ml-5 block {{ (request()->is('admin/menu/view-menu')) ? 'active' : '' }}">
-                    <x-sidebar.sidebar-link class="">
-                        <x-sidebar.sidebar-text>
-                           View Menu
-                        </x-sidebar.sidebar-text>
-                    </x-sidebar.sidebar-link>
-                </a>
-            </li>
+        @endif
+
+        <li>
+            <a href="{{ route('menu-view') }}"
+                class="mb-3 ml-5 block {{ request()->is('menu/view-menu') ? 'active' : '' }}">
+                <x-sidebar.sidebar-link>
+                    <x-sidebar.sidebar-text>
+                        View Menu
+                    </x-sidebar.sidebar-text>
+                </x-sidebar.sidebar-link>
+            </a>
+        </li>
+
     </ul>
 
     {{-- Report --}}

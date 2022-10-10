@@ -37,12 +37,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category' => 'required|regex:^[a-zA-Z]+$^',
+        $validate = $request->validate([
+            'category' => 'required|regex:^[a-zA-Z]+$^|unique:categories,name,'
         ]);
 
         Category::create([
-            'name' => $request->category,
+            'name' => $validate['category'],
             'created_at' => now(),
         ]);
 

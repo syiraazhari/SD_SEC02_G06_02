@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 @foreach ($menus as $menu)
-                    <div class="bg-white border">
+                    <div class="bg-white border p-5">
                         <div class="flex flex-col py-3 items-center justify-center border">
                             @if ($menu->menu_images)
                                 <img src="{{ asset('storage/' . $menu->menu_images) }}" alt="menu_images"

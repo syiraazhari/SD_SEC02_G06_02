@@ -9,3 +9,8 @@
     }
 
 }
+
+@font-face {
+    font-family: "SeoulHangang";
+    src: url('/resources/font/SeoulHangang.ttf');
+}

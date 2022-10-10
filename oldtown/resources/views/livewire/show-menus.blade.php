@@ -15,12 +15,14 @@
             </div>
         </div>
 
-        <div class="flex items-center mx-3">
-            <a href="{{ route('add-menu') }}"
-                class="px-5 py-2 block rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
-                add new menu
-            </a>
-        </div>
+        @if (Auth::user()->role === 'admin')
+            <div class="flex items-center mx-3">
+                <a href="{{ route('add-menu') }}"
+                    class="px-5 py-2 block rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
+                    add new menu
+                </a>
+            </div>
+        @endif
     </div>
 
 
@@ -59,29 +61,40 @@
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                             {{ $menu->menu_name }}
                         </th>
+
                         <td class="py-4 px-6">
                             {{ $menu->cost_price }}
                         </td>
+
                         <td class="py-4 px-6">
                             {{ $menu->category->name }}
                         </td>
+
                         <td class="py-4 px-6">
                             {{ $menu->selling_price }}
                         </td>
+
                         <td class="py-4 px-6">
                             <a href="{{ route('view-single-menu', $menu->id) }}"
                                 class="font-medium text-blue-600 hover:underline">View</a>
 
-                            <a href="edit-menu/{{ $menu->id }}" class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
-                            <button data-id="{{ $menu->id }}" class="font-medium text-red-600 hover:underline"
-                                onclick="$('#dataid').val($(this).data('id')); $('#showmodal').modal('show');">Delete
-                            </button>
-
+                            @if (Auth::user()->role === 'admin')
+                                <a href="edit-menu/{{ $menu->id }}"
+                                    class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
+                                <button data-id="{{ $menu->id }},{{ $menu->menu_images }}"
+                                    class="font-medium text-red-600 hover:underline"
+                                    onclick="$('#dataid').val($(this).data('id')); $('#showmodal').modal('show');">Delete
+                                </button>
+                            @endif
                         </td>
                     </tr>
 
-
                 @empty
+                    <tr>
+                        <td colspan="4"  class="pt-5 text-center">
+                            There is no data
+                        </td>
+                    </tr>
                 @endforelse
 
             </tbody>

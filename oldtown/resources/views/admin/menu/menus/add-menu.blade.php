@@ -8,7 +8,7 @@
             <x-sidebar.sidebar />
             <div class="md:m-10 m-5 flex-grow">
                 <div>
-                    <h3 class="text-2xl font-poppins">Add Staff</h3>
+                    <h3 class="text-2xl font-poppins">Add Menu</h3>
                 </div>
 
                 @if ($errors->any())

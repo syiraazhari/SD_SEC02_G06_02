@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\StaffController;
@@ -22,10 +23,11 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/test', function () {
-    return view('admin.menu.menus.view-menu');
-});
-
+Route::get('/', [CustomerController::class, 'index']);
+Route::get('/about-us', [CustomerController::class, 'viewAboutUs']);
+Route::get('/contact-us', [CustomerController::class, 'viewContactUs']);
+Route::get('/view-menu/{id}', [CustomerController::class, 'viewMenu']);
+Route::get('/view-menu/menu/{id}', [CustomerController::class, 'viewItem']);
 
 Route::middleware(['auth'])->group(function(){
 
@@ -36,6 +38,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/edit-password', [HomeController::class, 'updatePassword'])->name('update_password');
     Route::get('/edit-image', [HomeController::class, 'viewEditImage'])->name('edit_image');
     Route::post('/edit-image', [HomeController::class, 'updateImage'])->name('update_image');
+    Route::get('menu/view-menu', [MenuController::class, 'index'])->name('menu-view');
+    Route::get('menu/view-single-menu/{id}', [MenuController::class, 'show'])->name('view-single-menu');
+
 });
 
 
@@ -47,6 +52,7 @@ Route::group(['middleware' => ['auth', 'staff'], 'prefix' => 'staff'], function 
 
 // admin protected routes
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
+
     Route::get('/dashboard',  [HomeController::class, 'viewDashboard'])->name('admin_dashboard');
 
     // Staff Function
@@ -67,8 +73,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::delete('category/delete', [CategoryController::class, 'destroy'])->name('delete-category');
 
     //Menu Function
-    Route::get('menu/view-menu', [MenuController::class, 'index'])->name('menu-view');
-    Route::get('menu/view-single-menu/{id}', [MenuController::class, 'show'])->name('view-single-menu');
     Route::get('menu/add-menu', [MenuController::class, 'create']);
     Route::post('menu/add-menu', [MenuController::class, 'store'])->name('add-menu');
     Route::delete('menu/delete', [MenuController::class, 'destroy'])->name('delete-menu');

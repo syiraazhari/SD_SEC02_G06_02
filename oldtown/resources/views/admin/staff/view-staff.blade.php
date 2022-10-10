@@ -98,7 +98,7 @@
                                                 class="mx-5 font-medium text-blue-600 hover:underline">View</a>
                                             <a href="staff/edit-staff/{{ $staff->id }}"
                                                 class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
-                                            <button data-id="{{ $staff->id }}" class="font-medium text-red-600 hover:underline"
+                                            <button data-id="{{ $staff->id }},{{$staff->profile_images}}" class="font-medium text-red-600 hover:underline"
                                                 onclick="$('#dataid').val($(this).data('id')); $('#showmodal').modal('show');">Delete
                                             </button>
                                         </td>

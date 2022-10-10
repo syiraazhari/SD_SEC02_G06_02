@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -130,7 +131,10 @@ class MenuController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id = $request->dataid;
+        $newarr = explode(',', $request->dataid);
+        $id = $newarr[0];
+        $image = $newarr[1];
+        Storage::delete($image);
         DB::table('menus')->delete($id);
         return redirect(route('menu-view'));
     }

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('menu_name');
-            $table->integer('cost_price');
+            $table->decimal('cost_price');
             $table->string('description');
-            $table->integer('selling_price');
+            $table->decimal('selling_price');
             $table->unsignedBigInteger('category_id');
             $table->string('menu_images');
             $table->foreign('category_id')->references('id')

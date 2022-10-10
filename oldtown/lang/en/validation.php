@@ -139,7 +139,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
-
+    'phone' => 'The :attribute field contains an invalid number.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

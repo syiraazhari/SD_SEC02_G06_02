@@ -1,21 +1,30 @@
 @component('mail::message')
-<h1 style="text-align: center; font-weight:700; font-family:'Poppins', sans-serif; color:#57210B; font-size: 24px;"> Hello {{ $name }} </h1>
-<h3 style="text-align: center; font-weight:500; font-family:'Poppins', sans-serif; font-size: 18px; color:black">Welcome to OldTown White Coffee!</h3>
-<hr style="margin-left:10em; margin-right:10em">
-<p style="text-align: center; font-weight:400; color:black">We're happy you're joining our family!</p>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+</style>
 
-<div style="margin: 2em 0">
-<p style="font-weight:700; color:black; margin: 0;padding: 0;">Email Address: {{ $email }}</p>
-<p style="font-weight:700; color:black; margin: 0;padding: 0;">Temporary password: oldtown@123</p>
+<div style="display:flex;  justify-content: center; align-items:center;">
+<img src="{{ asset('storage/images/OldTownBG.png') }}" alt="image"
+width="600px" style="max-width: 100%;">
 </div>
 
+<div style="text-align: center; font-family: 'Roboto Condensed', sans-serif;">
+<h3 style="color: #FFC426; text-align: center; margin-top:10px; font-size: 28px;">Old Town White Coffee</h3>
+<h4 style="color: #800000; text-align: center">Hello {{$name}}</h4>
+</div>
+<div style="text-align:center; font-family: sans-serif;">
+<p>Welcome to OldTown White Coffee!</p>
+<p>We're happy that you're joining our family!</p>
+<p><strong>Email Address: {{$email}}</strong></p>
+<p><strong>Temporary Password: oldtown@123</strong></p>
 <p>Here's what to do next:</p>
-<p>·Click Login link below:</p>
-<p>·Once you logged in with the temporary password</p>
-<p>·Change your password at the profile setting page.</p>
+<p>Click on the login button below,</p>
+<p>Once you've login with the temporary password, change you're password at the profile
+setting page.</p>
+</div>
 
 @component('mail::button', ['url' => route('login')])
-Log In
+LOGIN HERE
 @endcomponent
 
 @endcomponent
