@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/alpinejs" defer></script>
 @vite('resources/css/app.css')
 <title>OldTown White Coffee</title>
-@livewireStyles
+
 <style>
     [x-cloack] {
         display: none;
