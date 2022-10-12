@@ -79,7 +79,7 @@
                                 class="font-medium text-blue-600 hover:underline">View</a>
 
                             @if (Auth::user()->role === 'admin')
-                                <a href="edit-menu/{{ $menu->id }}"
+                                <a href="{{ route('edit-menu', $menu->id ) }}"
                                     class="mx-5 font-medium text-emerald-600 hover:underline">Edit</a>
                                 <button data-id="{{ $menu->id }},{{ $menu->menu_images }}"
                                     class="font-medium text-red-600 hover:underline"

@@ -5,7 +5,7 @@
 
         @livewire('navbar')
 
-        <main class="container mx-auto h-[75vh] md:mb-10 font-seoulHangang">
+        <main class="container mx-auto h-screen md:mb-10 font-seoulHangang">
             <a href="/view-menu/1">
                 <span>
                     <svg class="w-6 h-6 m-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"

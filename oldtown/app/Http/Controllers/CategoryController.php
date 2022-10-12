@@ -74,15 +74,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = DB::table('categories')->where('id', $id);
+        $category = Category::find($id);
 
-        $request->validate([
-            'categories' => 'regex:^[a-zA-Z]+$^',
+        $validate = $request->validate([
+            'category' => ['regex:^[a-zA-Z]+$^','unique:categories,name,'],
             'updated_at' => now(),
         ]);
 
         $category->update([
-            'name' => $request->category,
+            'name' =>  $validate['category'],
             'updated_at' => now(),
         ]);
 

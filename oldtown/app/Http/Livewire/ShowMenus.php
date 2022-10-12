@@ -17,7 +17,7 @@ class ShowMenus extends Component
     {
         $term = '%' . $this->term . '%';
         $menus = Menu::with('category')
-                                ->where('menu_name', 'LIKE', "$term")->paginate(3);
+                                ->where('menu_name', 'LIKE', "$term")->paginate(5);
         return view('livewire.show-menus')->with('menus', $menus);
     }
 }

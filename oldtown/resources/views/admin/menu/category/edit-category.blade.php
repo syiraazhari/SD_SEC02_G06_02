@@ -27,16 +27,26 @@
                     </a>
                 </div>
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <x-alert.error>
+                            {{ $error }}
+                        </x-alert.error>
+                    @endforeach
+                @endif
+
                 <div class="bg-white">
                     @foreach ($category as $category)
-                        <form action="{{route('update-category', $category->id )}}" method="POST">
+                        <form action="{{ route('update-category', $category->id) }}" method="POST">
                             @csrf
                             <div class="flex items-center mb-5 p-5">
                                 <div class="w-1/2">
-                                    <input placeholder="category" name='category' value="{{ $category->name }}" class="block w-full px-5 py-2 mt-2 font-roboto text-secondary-600 bg-white border border-secondary-500 focus:border-secondary-600 focus:ring-secondary-600  focus:ring-opacity-80 focus:outline-none focus:ring">
+                                    <input placeholder="category" name='category' value="{{ $category->name }}"
+                                        class="block w-full px-5 py-2 mt-2 font-roboto text-secondary-600 bg-white border border-secondary-500 focus:border-secondary-600 focus:ring-secondary-600  focus:ring-opacity-80 focus:outline-none focus:ring">
                                 </div>
 
-                                <button type="submit" class="px-5 py-2.5 mt-2 mx-5 font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200" >
+                                <button type="submit"
+                                    class="px-5 py-2.5 mt-2 mx-5 font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
                                     edit category
                                 </button>
 
@@ -48,10 +58,8 @@
         </x-flex-view>
 
         <script>
-
             const targetEl = document.getElementById('dropdown-example');
             targetEl.style.display = "block";
-
         </script>
 
     </x-body>
