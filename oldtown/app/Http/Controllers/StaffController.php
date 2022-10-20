@@ -37,11 +37,11 @@ class StaffController extends Controller
     {
         $validatedData = $request->validate([
             'profile_images' => 'image|mimes:png,jpg,jpeg|max:5048',
-            'first_name' => 'required',
+            'first_name' => 'required|regex:/^[a-zA-Z]+$/u',
             'last_name' => 'required',
-            'birthdate' => 'required',
-            'contact_number' => 'required',
-            'email' => 'required|unique:users,email,',
+            'birthdate' => 'required|date',
+            'contact_number' => 'required|phone:MY',
+            'email' => 'email:rfc,dns|unique:users,email,',
             'address' => 'required',
             'created_at' => now()
         ]);

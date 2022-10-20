@@ -6,7 +6,7 @@
         @livewire('navbar')
 
         <main class="container mx-auto h-screen md:mb-10 font-seoulHangang">
-            <a href="/view-menu/1">
+            <a href="/view-menu/{{$menu->category_id}}">
                 <span>
                     <svg class="w-6 h-6 m-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">

@@ -90,7 +90,7 @@
                             </div>
 
                             <div class='flex justify-end my-3'>
-                                <a href="{{ route('view-staff') }}"
+                                <a href="{{ route('menu-view') }}"
                                     class="px-5 py-2 block rounded-sm font-poppins capitalize shadow-md text-red-800 bg-red-500 hover:bg-red-600">
                                     Cancel
                                 </a>

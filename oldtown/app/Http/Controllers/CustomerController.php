@@ -38,6 +38,8 @@ class CustomerController extends Controller
     public function viewItem($id)
     {
         $menu = DB::table('menus')->where('id', $id)->get()->first();
-        return view('customer.menu-item')->with(['menu' => $menu]);
+        return view('customer.menu-item')->with([
+            'menu' => $menu
+        ]);
     }
 }
