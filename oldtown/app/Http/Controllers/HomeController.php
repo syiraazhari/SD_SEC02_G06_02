@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,10 +53,12 @@ class HomeController extends Controller
     {
         $staffCount = User::where('role', 'staff')->count() ;
         $menuCount = Menu::count();
+        $order = DB::table('customer_order')->where('status', 'Cooking')->count();
 
         return view('dashboard')->with([
             'staffcount' => $staffCount,
-            'menuCount' => $menuCount
+            'menuCount' => $menuCount,
+            'order' => $order
         ]);
     }
 

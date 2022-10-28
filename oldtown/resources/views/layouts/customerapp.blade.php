@@ -37,7 +37,7 @@
 </head>
 
 <body class="bg-white">
-    <nav x-cloak x-data="{ showCart: false }" x-transition >
+    <nav x-cloak x-data="{ showCart: false }" x-transition>
         <div class="flex justify-between py-5 px-7 bg-primary">
             <a href="/">
                 <img src="{{ asset('storage/images/logo.svg') }}" alt="logo">
@@ -54,11 +54,12 @@
                     <path d="M17 17h-11v-14h-2"></path>
                     <path d="M6 5l14 1l-1 7h-13"></path>
                 </svg>
-                <span class="mx-2">Cart</span>
+                <span class="mx-2">Cart {{ $total }}</span>
             </button>
         </div>
 
-        <div x-show="showCart" @click.outside="showCart = !showCart" x-transition class="fixed z-20 overflow-auto top-0 right-0 w-screen h-screen bg-white md:w-2/3 lg:w-1/3">
+        <div x-show="showCart" @click.outside="showCart = !showCart" x-transition
+            class="fixed z-20 overflow-auto top-0 right-0 w-screen h-screen bg-white md:w-2/3 lg:w-1/3">
             <div>
                 <div class="flex justify-around">
                     <h1 class="flex-grow text-left p-5 font-seoulHangang text-2xl">Checkout</h1>
@@ -72,10 +73,6 @@
 
                 <div>
                     @livewire('customer.cart-component')
-                </div>
-
-                <div class="m-5">
-                    <button class="w-full rounded-md p-2 bg-primary font-seoulHangang text-lg">Checkout</button>
                 </div>
 
             </div>
@@ -127,7 +124,6 @@
             </div>
         </div>
     </footer>
-
 
     @livewireScripts
 </body>

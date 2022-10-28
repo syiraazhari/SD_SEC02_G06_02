@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerOrder;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,19 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/', [CustomerController::class, 'index']);
-Route::get('/about-us', [CustomerController::class, 'viewAboutUs']);
-Route::get('/contact-us', [CustomerController::class, 'viewContactUs']);
-Route::get('/view-menu/{id}', [CustomerController::class, 'viewMenu']);
-Route::get('/view-menu/menu/{id}', [CustomerController::class, 'viewItem']);
+// For Customer
+    Route::get('/', [CustomerController::class, 'index']);
+    Route::get('/about-us', [CustomerController::class, 'viewAboutUs']);
+    Route::get('/contact-us', [CustomerController::class, 'viewContactUs']);
+    Route::get('/view-menu/{id}', [CustomerController::class, 'viewMenu']);
+    Route::get('/view-menu/menu/{id}', [CustomerController::class, 'viewItem']);
+    Route::post('/checkout', [PaymentController::class, 'index']);
+    Route::post('/checkout-pay', [PaymentController::class, 'checkout'])->name('pay');
+    Route::post('/checkout-cancel', [PaymentController::class, 'cancel'])->name('cancel');
+    Route::get('/checkout-success', [PaymentController::class, 'success']);
 
+
+// For Both Roles ( Admin and Staff )
 Route::middleware(['auth'])->group(function(){
 
     Route::get('/profile', [HomeController::class, 'index'])->name('view_profile');
@@ -38,9 +47,27 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/edit-password', [HomeController::class, 'updatePassword'])->name('update_password');
     Route::get('/edit-image', [HomeController::class, 'viewEditImage'])->name('edit_image');
     Route::post('/edit-image', [HomeController::class, 'updateImage'])->name('update_image');
+
+    //Menu View
     Route::get('menu/view-menu', [MenuController::class, 'index'])->name('menu-view');
     Route::get('menu/view-single-menu/{id}', [MenuController::class, 'show'])->name('view-single-menu');
 
+    //Receive Order
+    Route::get('order/receive-order', [CustomerOrder::class, 'index'])->name('receive-order');
+    Route::get('order/receive-order/{id}', [CustomerOrder::class, 'editReceiveOrder']);
+    Route::post('order/receive-order/{id}', [CustomerOrder::class, 'editReceiveStatus'])->name('update-receive-order');
+
+    //Current Order
+    Route::get('order/current-order', [CustomerOrder::class, 'showCurrentOrder'])->name('current-order');
+    Route::get('order/current-order/{id}', [CustomerOrder::class, 'showCurrentOrderForm']);
+    Route::post('order/current-order/{id}', [CustomerOrder::class, 'editCurrentStatus'])->name('update-current-order');
+
+    // Order History
+    Route::get('order/order-history', [CustomerOrder::class, 'showOrderHistory'])->name('order-history');
+    Route::get('order/order-history/{id}', [CustomerOrder::class, 'viewSingleOrderHistory']);
+
+    //Delete Order
+    Route::delete('order/delete', [CustomerOrder::class, 'destroy'])->name('delete-order');
 });
 
 

@@ -9,7 +9,6 @@ class ProductComponent extends Component
 {
     public $menu;
     public $quantity;
-
     /**
      * Mounts the component on the template.
      *
@@ -34,7 +33,7 @@ class ProductComponent extends Component
      */
     public function addToCart(): void
     {
-        Cart::add($this->menu->id, $this->menu->menu_name, $this->menu->selling_price, $this->quantity);
+        Cart::add($this->menu->id, $this->menu->menu_name, $this->menu->selling_price, $this->quantity, $this->menu->cost_price);
         $this->emit('productAddedToCart');
     }
 }

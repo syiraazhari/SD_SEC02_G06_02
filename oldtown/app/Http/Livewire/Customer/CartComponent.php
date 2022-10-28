@@ -11,6 +11,7 @@ class CartComponent extends Component
 {
     protected $total;
     protected $content;
+
     protected $listeners = [
         'productAddedToCart' => 'updateCart',
     ];
@@ -78,4 +79,5 @@ class CartComponent extends Component
         $this->total = Cart::total();
         $this->content = Cart::content();
     }
+
 }

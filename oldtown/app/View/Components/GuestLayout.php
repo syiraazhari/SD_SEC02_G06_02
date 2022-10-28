@@ -2,7 +2,10 @@
 
 namespace App\View\Components;
 
+use App\Facades\Cart;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Session;
 
 class GuestLayout extends Component
 {
@@ -11,8 +14,20 @@ class GuestLayout extends Component
      *
      * @return \Illuminate\View\View
      */
-    public function render()
+
+    protected $total;
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
+    public function render(): View
     {
-        return view('layouts.customerapp');
+        $this->total = $this->totalInCart();
+        return view('layouts.customerapp', [
+            'total' => $this->total
+        ]);
+    }
+
+    public function totalInCart()
+    {
+       return count(Cart::content());
     }
 }

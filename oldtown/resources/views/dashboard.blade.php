@@ -8,7 +8,7 @@
             <x-sidebar.sidebar />
 
             <div class="grid md:grid-cols-1 w-full h-32">
-                <x-dashboard.dashboard-card staffcount="{{ $staffcount }}" menuCount={{$menuCount}} />
+                <x-dashboard.dashboard-card staffcount="{{ $staffcount }}" menuCount={{$menuCount}} orderCount= {{ $order }}/>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 md:h-48">
                     <div

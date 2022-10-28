@@ -18,7 +18,7 @@
     </a>
 
     {{-- Order --}}
-    <a href="" class="mb-3 block {{ request()->segment(2) == 'order' ? 'active' : '' }}">
+    <a href="{{ route('receive-order') }}" class="mb-3 block {{ request()->segment(1) == 'order' ? 'active' : '' }}">
         <x-sidebar.sidebar-link>
 
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
