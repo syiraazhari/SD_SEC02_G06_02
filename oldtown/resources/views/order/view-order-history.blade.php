@@ -31,8 +31,8 @@
                 <x-Tabs.order-tabs />
 
                 <div class="bg-white p-3 border border-t-0">
-                    <div class="my-5 mx-3 overflow-x-auto relative border shadow-sm sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500">
+                    <div class="my-5 mx-3 px-3 overflow-x-auto relative border shadow-sm sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 border">
                             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
                                 Order
                                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">List of Current Orders
@@ -50,9 +50,6 @@
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Email
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Status
                                     </th>
                                     <th scope="col" class="sr-only">
                                         Action
@@ -73,10 +70,6 @@
 
                                         <td class="py-4 px-6">
                                             {{ $order->email }}
-                                        </td>
-
-                                        <td class="py-4 px-6">
-                                            {{ $order->status }}
                                         </td>
 
                                         <td class="py-4 px-6">

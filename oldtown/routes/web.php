@@ -1,14 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerOrder;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReportController;
+use App\Mail\OrderReceive;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,8 @@ use App\Http\Controllers\CustomerController;
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('/test', [ReportController::class, 'generateDailyReport'])->name('generate-daily-report');
 
 // For Customer
     Route::get('/', [CustomerController::class, 'index']);
@@ -68,6 +72,14 @@ Route::middleware(['auth'])->group(function(){
 
     //Delete Order
     Route::delete('order/delete', [CustomerOrder::class, 'destroy'])->name('delete-order');
+
+    Route::get('/report', [ReportController::class, 'index'])->name('report');
+    Route::get('/report/generate-report', [ReportController::class, 'generateReport']);
+    Route::post('/report/generate-daily-report', [ReportController::class, 'generateDailyReport'])->name('generate-daily-report');
+    Route::get('/download-report', [ReportController::class, 'downloadReport'])->name('download-report');
+    Route::get('/report/generate-monthly-report', [ReportController::class, 'generateMonthlyReport'])->name('generate-monthly-report');
+    Route::delete('/report/delete', [ReportController::class, 'deleteReport'])->name('delete-report');
+
 });
 
 

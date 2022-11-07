@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        ModelsMenu::factory(10)->create();
+       // ModelsMenu::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
