@@ -13,7 +13,8 @@
                     <span>{{ $item->get('name') }}</span>
                     <span class="grid grid-cols-3 place-items-center">
                         <button wire:click="updateCartItem({{ $id }}, 'plus')">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -44,7 +45,9 @@
                 @csrf
                 <input type="hidden" name="total" value="{{ $total }}">
                 <div class="m-5">
-                    <button class="w-full rounded-md p-2 bg-primary font-seoulHangang text-lg">Checkout</button>
+                    <button class="w-full rounded-md p-2 bg-primary font-seoulHangang text-lg">
+                        Checkout
+                    </button>
                 </div>
             </form>
         @else

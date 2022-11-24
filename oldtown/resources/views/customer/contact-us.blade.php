@@ -1,8 +1,6 @@
 <x-guest-layout>
-
     <div>
         <main class="container mx-auto flex flex-col items-center h-screen mt-5">
-
             <section class="mt-5 font-seoulHangang px-5">
                 <h3 class="text-4xl">Contact Us</h3>
 
@@ -28,9 +26,6 @@
                     </div>
                 </div>
             </section>
-
-
         </main>
     </div>
-
 </x-guest-layout>

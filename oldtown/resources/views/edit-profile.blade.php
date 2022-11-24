@@ -32,7 +32,8 @@
                                                 <label class="text-secondary block font-roboto font-medium"
                                                     for="first_name">First
                                                     Name</label>
-                                                <x-input placeholder="First Name" name='first_name' id='first_name'
+                                                <x-input placeholder="First Name" name='first_name'
+                                                id='first_name'
                                                     value="{{ $user->first_name }}" />
 
                                             </div>
@@ -63,8 +64,8 @@
                                                 <div>
                                                     <label class="text-secondary block font-roboto font-medium"
                                                         for="email">Email Address</label>
-                                                    <x-input placeholder="Email Address" type="email" name='email'
-                                                        id='email' value="{{ $user->email }}" />
+                                                    <x-input placeholder="Email Address" type="email"
+                                                    name='email' id='email' value="{{ $user->email }}" />
 
                                                 </div>
                                                 <div>
@@ -80,7 +81,10 @@
                                                 <div class="my-2">
                                                     <label class="text-secondary " for="address">Address</label>
                                                     <textarea name="address" id="address"
-                                                        class="block w-full px-4 py-2 mt-2 font-roboto text-slate-800 bg-white border border-slate-800 rounded-md focus:border-slate-800 focus:ring-slate-800  focus:ring-opacity-80 focus:outline-none focus:ring"
+                                                        class="block w-full px-4 py-2 mt-2 font-roboto
+                                                        text-slate-800 bg-white border border-slate-800
+                                                        rounded-md focus:border-slate-800 focus:ring-slate-800
+                                                        focus:ring-opacity-80 focus:outline-none focus:ring"
                                                         style="resize: none;">{{ $user->address }}</textarea>
                                                 </div>
                                             </div>
@@ -88,19 +92,17 @@
                                     </div>
                                     <div class='flex justify-end'>
                                         <button type="submit"
-                                            class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white hover:bg-slate-500">
+                                            class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white
+                                            hover:bg-slate-500">
                                             Save
                                         </button>
                                     </div>
                                 </form>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </x-flex-view>
-
     </x-body>
 @endsection

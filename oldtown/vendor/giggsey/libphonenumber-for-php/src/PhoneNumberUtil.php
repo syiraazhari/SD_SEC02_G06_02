@@ -894,7 +894,7 @@ class PhoneNumberUtil
      */
     protected function isValidRegionCode($regionCode)
     {
-        return $regionCode !== null && in_array($regionCode, $this->supportedRegions);
+        return $regionCode !== null && !is_numeric($regionCode) && in_array(strtoupper($regionCode), $this->supportedRegions);
     }
 
     /**
@@ -2433,8 +2433,8 @@ class PhoneNumberUtil
         $regionCode = $this->getRegionCodeForCountryCode($countryCallingCode);
         $numberType = $this->getNumberType($numberNoExt);
         $isValidNumber = ($numberType !== PhoneNumberType::UNKNOWN);
-        if ($regionCallingFrom == $regionCode) {
-            $isFixedLineOrMobile = ($numberType == PhoneNumberType::FIXED_LINE) || ($numberType == PhoneNumberType::MOBILE) || ($numberType == PhoneNumberType::FIXED_LINE_OR_MOBILE);
+        if (strtoupper($regionCallingFrom) === $regionCode) {
+            $isFixedLineOrMobile = ($numberType == PhoneNumberType::FIXED_LINE || $numberType == PhoneNumberType::MOBILE || $numberType == PhoneNumberType::FIXED_LINE_OR_MOBILE);
             // Carrier codes may be needed in some countries. We handle this here.
             if ($regionCode === 'BR' && $isFixedLineOrMobile) {
                 // Historically, we set this to an empty string when parsing with raw input if none was
@@ -2813,7 +2813,7 @@ class PhoneNumberUtil
      */
     public function isNANPACountry($regionCode)
     {
-        return in_array($regionCode, $this->nanpaRegions);
+        return in_array(strtoupper((string)$regionCode), $this->nanpaRegions);
     }
 
     /**

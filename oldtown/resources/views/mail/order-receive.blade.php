@@ -1,8 +1,8 @@
 @component('mail::message')
-# Thank You For Your Order
+# Your order has been confirmed
 
 @component('mail::panel')
-    Your order Has Been Confirmed
+   Your Order Purchase
 @endcomponent
 ## Here is your order:
 

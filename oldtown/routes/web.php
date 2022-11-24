@@ -27,22 +27,19 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/test', [ReportController::class, 'generateDailyReport'])->name('generate-daily-report');
-
 // For Customer
-    Route::get('/', [CustomerController::class, 'index']);
-    Route::get('/about-us', [CustomerController::class, 'viewAboutUs']);
-    Route::get('/contact-us', [CustomerController::class, 'viewContactUs']);
-    Route::get('/view-menu/{id}', [CustomerController::class, 'viewMenu']);
-    Route::get('/view-menu/menu/{id}', [CustomerController::class, 'viewItem']);
-    Route::post('/checkout', [PaymentController::class, 'index']);
-    Route::post('/checkout-pay', [PaymentController::class, 'checkout'])->name('pay');
-    Route::post('/checkout-cancel', [PaymentController::class, 'cancel'])->name('cancel');
-    Route::get('/checkout-success', [PaymentController::class, 'success']);
-
+Route::get('/', [CustomerController::class, 'index']);
+Route::get('/about-us', [CustomerController::class, 'viewAboutUs']);
+Route::get('/contact-us', [CustomerController::class, 'viewContactUs']);
+Route::get('/view-menu/{id}', [CustomerController::class, 'viewMenu']);
+Route::get('/view-menu/menu/{id}', [CustomerController::class, 'viewItem']);
+Route::post('/checkout', [PaymentController::class, 'index']);
+Route::post('/checkout-pay', [PaymentController::class, 'checkout'])->name('pay');
+Route::post('/checkout-cancel', [PaymentController::class, 'cancel'])->name('cancel');
+Route::get('/checkout-success', [PaymentController::class, 'success']);
 
 // For Both Roles ( Admin and Staff )
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile', [HomeController::class, 'index'])->name('view_profile');
     Route::get('/edit-profile', [HomeController::class, 'edit'])->name('edit_profile');
@@ -79,14 +76,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/download-report', [ReportController::class, 'downloadReport'])->name('download-report');
     Route::get('/report/generate-monthly-report', [ReportController::class, 'generateMonthlyReport'])->name('generate-monthly-report');
     Route::delete('/report/delete', [ReportController::class, 'deleteReport'])->name('delete-report');
-
 });
-
 
 // staff protected routes
 Route::group(['middleware' => ['auth', 'staff'], 'prefix' => 'staff'], function () {
     Route::get('/dashboard', [HomeController::class, 'viewDashboard'])->name('staff_dashboard');
-
 });
 
 // admin protected routes
@@ -117,8 +111,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::delete('menu/delete', [MenuController::class, 'destroy'])->name('delete-menu');
     Route::get('menu/edit-menu/{id}', [MenuController::class, 'edit']);
     Route::post('menu/edit-menu/{id}', [MenuController::class, 'update'])->name('edit-menu');
-
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

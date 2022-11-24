@@ -294,7 +294,6 @@ abstract class Facade
             'Validator' => Validator::class,
             'View' => View::class,
             'Vite' => Vite::class,
-
         ]);
     }
 

@@ -22,8 +22,6 @@ class ReportController extends Controller
         return view('report.generate-report');
     }
 
-
-
     public function generateDailyReport()
     {
         $today = date('Y/m/d');
@@ -32,8 +30,7 @@ class ReportController extends Controller
         $sale = 0;
         $profit = 0;
 
-        foreach( $report as $name)
-        {
+        foreach ($report as $name) {
             $cost += $name->sum_cost;
             $sale += $name->total_price;
         }
@@ -60,8 +57,7 @@ class ReportController extends Controller
         $sale = 0;
         $profit = 0;
 
-        foreach( $report as $name)
-        {
+        foreach ($report as $name) {
             $cost += $name->sum_cost;
             $sale += $name->total_price;
         }
@@ -78,7 +74,6 @@ class ReportController extends Controller
         ]);
 
         return redirect()->route('report')->with('status', 'Report Generated');
-
     }
 
     public function downloadReport(Request $request)
@@ -93,17 +88,16 @@ class ReportController extends Controller
         $today = $report->report_date;
 
         $date = date('F Y');
-        if($report->type === 'daily'){
+        if ($report->type === 'daily') {
             // return view('pdf.dailyreport');
-             $pdf = Pdf::loadView('pdf.dailyreport', $data = compact('profit', 'sale', 'cost', 'today' ));
-             return $pdf->download('dailyreport.pdf');
+            $pdf = Pdf::loadView('pdf.dailyreport', $data = compact('profit', 'sale', 'cost', 'today'));
+            return $pdf->download('dailyreport.pdf');
         }
 
-        if($report->type === 'monthly'){
-            $pdf = Pdf::loadView('pdf.monthlyreport', $data = compact('profit', 'sale', 'cost', 'today', 'date' ));
+        if ($report->type === 'monthly') {
+            $pdf = Pdf::loadView('pdf.monthlyreport', $data = compact('profit', 'sale', 'cost', 'today', 'date'));
             return $pdf->download('monthlyreport.pdf');
         }
-
     }
 
     public function deleteReport(Request $request)

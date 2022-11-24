@@ -17,7 +17,8 @@
                 </a>
 
                 <a href="/contact-us"
-                    class="border bg-white rounded-md max-h-64 flex flex-col items-center justify-center font-seoulHangang shadow-md">
+                    class="border bg-white rounded-md max-h-64 flex flex-col items-center
+                    justify-center font-seoulHangang shadow-md">
                     <div class="text-center text-2xl">Contact <br> Us</div>
                 </a>
 
@@ -30,7 +31,5 @@
             </section>
 
         </main>
-
     </div>
-
 </x-guest-layout>

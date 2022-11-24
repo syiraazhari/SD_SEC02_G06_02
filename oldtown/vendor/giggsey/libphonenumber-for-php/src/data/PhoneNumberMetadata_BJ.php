@@ -25,7 +25,7 @@ return array (
   ),
   'fixedLine' => 
   array (
-    'NationalNumberPattern' => '2(?:02|1[037]|2[45]|3[68])\\d{5}',
+    'NationalNumberPattern' => '2(?:02|1[037]|2[45]|3[68]|4\\d)\\d{5}',
     'ExampleNumber' => '20211234',
     'PossibleLength' => 
     array (
@@ -160,6 +160,5 @@ return array (
   array (
   ),
   'mainCountryForCode' => false,
-  'leadingZeroPossible' => false,
   'mobileNumberPortableRegion' => false,
 );

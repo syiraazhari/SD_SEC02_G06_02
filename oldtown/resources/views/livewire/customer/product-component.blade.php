@@ -24,7 +24,6 @@
                 </div>
 
                 <div class="my-3">
-
                     <input hidden class="text-center border-none" type="number" min="1" wire:model="quantity">
 
                     <button wire:click="addToCart" class="bg-primary px-5 py-3 shadow-md rounded-md w-full">

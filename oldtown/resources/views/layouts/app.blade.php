@@ -6,8 +6,6 @@
     @include('includes.head')
 </head>
 
-
 @yield('content')
-
 
 </html>

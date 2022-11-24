@@ -29,8 +29,8 @@ class HomeController extends Controller
             'image' => 'required|image|mimes:png,jpg,jpeg|max:5048'
         ]);
 
-        if($request->file('image')){
-            if($request->oldImage){
+        if ($request->file('image')) {
+            if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
 
@@ -46,19 +46,39 @@ class HomeController extends Controller
 
     public function edit()
     {
-         return view('edit-profile')->with('user', Auth::user());
+        return view('edit-profile')->with('user', Auth::user());
     }
 
     public function viewDashboard()
     {
-        $staffCount = User::where('role', 'staff')->count() ;
+        $staffCount = User::where('role', 'staff')->count();
         $menuCount = Menu::count();
-        $order = DB::table('customer_order')->where('status', 'Cooking')->count();
+        $order = DB::table('customer_order')->where('status', 'Verifying')->count();
+        $revenue = DB::table('customer_completed')->get();
+
+        $receiveOrder = DB::table('customer_order')
+            ->where('status', 'Verifying')
+            ->oldest('ordered_at')
+            ->paginate(10);
+
+        $cost = 0;
+        $sale = 0;
+        $profit = 0;
+
+        foreach ($revenue as $name) {
+            $cost += $name->sum_cost;
+            $sale += $name->total_price;
+        }
+
+        $profit = $sale - $cost;
+
 
         return view('dashboard')->with([
             'staffcount' => $staffCount,
             'menuCount' => $menuCount,
-            'order' => $order
+            'order' => $order,
+            'revenue' => $profit,
+            'receiveOrder' => $receiveOrder
         ]);
     }
 
@@ -78,18 +98,18 @@ class HomeController extends Controller
         ]);
 
         //Match The Old Password
-        if(!Hash::check($request->old_password, $user->password)){
+        if (!Hash::check($request->old_password, $user->password)) {
             return back()->with("error", "Old Password Doesn't match!");
         }
 
         //Check Password
-        if(Hash::check($request->password, $user->password)){
+        if (Hash::check($request->password, $user->password)) {
             return back()->with('error', 'New password cannot be same as old');
         }
 
 
         $user->update([
-            'password'=> Hash::make($request->password)
+            'password' => Hash::make($request->password)
         ]);
 
         Auth::guard('web')->logout();
@@ -108,24 +128,22 @@ class HomeController extends Controller
             'last_name' => 'required',
             'dob' => 'required',
             'contact_number' => 'required',
-            'email' => 'unique:users,email,'.$id,
+            'email' => 'unique:users,email,' . $id,
             'address' => 'required'
         ]);
 
         User::where('id', Auth::id())
-                ->update([
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'birthdate' => $request->input('dob'),
-                    'contact_number' => $request->input('contact_number'),
-                    'email' => $request->input('email'),
-                    'address' => $request->input('address'),
-                    'updated_at' => now()
-              ]);
+            ->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'birthdate' => $request->input('dob'),
+                'contact_number' => $request->input('contact_number'),
+                'email' => $request->input('email'),
+                'address' => $request->input('address'),
+                'updated_at' => now()
+            ]);
 
 
         return redirect(route('view_profile'))->with('status', 'Profile updated!');
-
     }
-
 }

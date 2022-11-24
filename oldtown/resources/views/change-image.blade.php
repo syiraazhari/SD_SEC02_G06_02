@@ -21,14 +21,15 @@
                             Profile Image
                         </div>
 
-
                         <div class="py-3">
                             <div class="flex flex-col my-2 w-2/4">
-                                <form action="{{ route('update_image') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('update_image') }}" method="POST"
+                                enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3 w-96 relative">
 
-                                        <input type="hidden" name="oldImage" value="{{ Auth::user()->profile_images }}">
+                                        <input type="hidden" name="oldImage"
+                                        value="{{ Auth::user()->profile_images }}">
 
                                         @if (Auth::user()->profile_images)
                                             <img src="{{ asset('storage/' . Auth::user()->profile_images) }}"
@@ -40,11 +41,15 @@
                                         <div class="my-3">
                                             <br>
                                             <input
-                                                class="block w-full text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer  focus:outline-none
-                                                @error('image') border-red-500 text-red-500 bg-red-300 @enderror"
+                                                class="block w-full text-sm text-gray-500 bg-gray-50
+                                                rounded-lg border border-gray-300 cursor-pointer
+                                                focus:outline-none
+                                                @error('image')
+                                                border-red-500 text-red-500 bg-red-300
+                                                @enderror"
                                                 id="image" type="file" onchange="previewImage()" name="image">
-                                            <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG or JPEG
-                                                (Max: 5048kb)</p>
+                                            <p class="mt-1 text-sm text-gray-500" id="file_input_help">
+                                                PNG, JPG or JPEG (Max: 5048kb)</p>
                                             @error('image')
                                                 <p class="text-red-500">{{ $message }}</p>
                                             @enderror
@@ -52,13 +57,13 @@
 
                                         <div class='flex justify-end w-full'>
                                             <button type="submit"
-                                                class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white hover:bg-secondary-500">
+                                                class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white
+                                                hover:bg-secondary-500">
                                                 Save
                                             </button>
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>

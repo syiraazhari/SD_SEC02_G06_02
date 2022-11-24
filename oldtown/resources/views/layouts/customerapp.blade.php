@@ -44,7 +44,8 @@
             </a>
 
             <button x-on:click="showCart = !showCart"
-                class="font-seoulHangang text-secondary flex rounded-2xl px-3 bg-white items-center drop-shadow-md shadow-secondary-600">
+                class="font-seoulHangang text-secondary flex rounded-2xl px-3 bg-white
+                items-center drop-shadow-md shadow-secondary-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart"
                     width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                     fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -54,7 +55,7 @@
                     <path d="M17 17h-11v-14h-2"></path>
                     <path d="M6 5l14 1l-1 7h-13"></path>
                 </svg>
-                <span class="mx-2">Cart {{ $total }}</span>
+                <span class="mx-2">Cart</span>
             </button>
         </div>
 
@@ -64,7 +65,8 @@
                 <div class="flex justify-around">
                     <h1 class="flex-grow text-left p-5 font-seoulHangang text-2xl">Checkout</h1>
                     <button x-on:click="showCart = !showCart" class="m-5 px-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -80,7 +82,6 @@
         </div>
     </nav>
 
-
     <main>
         {{ $slot }}
     </main>
@@ -94,8 +95,10 @@
                     <h3>Follow Us</h3>
                     <div class="flex">
                         <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram"
-                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler
+                            icon-tabler-brand-instagram"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <rect x="4" y="4" width="16" height="16" rx="4"></rect>
@@ -105,11 +108,13 @@
                         </a>
 
                         <a href="" class="mx-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook"
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-brand-facebook"
                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3">
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1
+                                -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3">
                                 </path>
                             </svg>
                         </a>
@@ -127,6 +132,5 @@
 
     @livewireScripts
 </body>
-
 
 </html>

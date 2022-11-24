@@ -9,12 +9,12 @@
                     <img src="{{ asset('storage/images/cancelled.svg') }}" alt="cancel" class="w-48">
                 </div>
                 <a href="/">
-                    <h3 class="text-center rounded-lg shadow-md bg-primary text-secondary-400 font-seoulHangang p-3">Back to Homepage</h3>
+                    <h3 class="text-center rounded-lg shadow-md bg-primary text-secondary-400
+                    font-seoulHangang p-3">
+                    Back to Homepage
+                    </h3>
                 </a>
             </div>
-
         </main>
-
     </div>
-
 </x-guest-layout>

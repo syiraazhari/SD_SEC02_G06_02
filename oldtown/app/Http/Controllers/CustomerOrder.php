@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerOrderCancel;
+use App\Mail\CustomerReview;
 use Carbon\Carbon;
 use App\Mail\OrderReceive;
 use Illuminate\Http\Request;
@@ -25,15 +27,17 @@ class CustomerOrder extends Controller
     public function editReceiveOrder($id)
     {
         $orderID = DB::table('customer_order')
-        ->where('customer_id', $id)
-        ->first();
+            ->where('customer_id', $id)
+            ->first();
 
         $menu_name = explode(", ", $orderID->menu_name);
         $quantity  = explode(", ", $orderID->quantity);
 
         return view('order.edit.edit-receive-order', compact(
-            'orderID', 'menu_name', 'quantity'
-            ));
+            'orderID',
+            'menu_name',
+            'quantity'
+        ));
     }
 
     // Edit Status Receive Order
@@ -41,8 +45,8 @@ class CustomerOrder extends Controller
     {
         $id = $request->dataid;
         $cus_ID = DB::table('customer_order')
-                        ->where('customer_id', $id)
-                        ->first();
+            ->where('customer_id', $id)
+            ->first();
 
         $menu_name = explode(", ", $cus_ID->menu_name);
         $quantity  = explode(", ", $cus_ID->quantity);
@@ -50,9 +54,9 @@ class CustomerOrder extends Controller
         Mail::to($cus_ID->email)->send(new OrderReceive($menu_name, $quantity, $cus_ID->total_price));
 
         DB::table('customer_order')->where('customer_id', $id)
-                                        ->update([
-                                            'status' => 'Cooking',
-                                        ]);
+            ->update([
+                'status' => 'Cooking',
+            ]);
 
         return redirect()
             ->route('receive-order')
@@ -74,15 +78,17 @@ class CustomerOrder extends Controller
     public function showCurrentOrderForm(Request $request, $id)
     {
         $orderID = DB::table('customer_order')
-        ->where('customer_id', $id)
-        ->first();
+            ->where('customer_id', $id)
+            ->first();
 
         $menu_name = explode(", ", $orderID->menu_name);
         $quantity  = explode(", ", $orderID->quantity);
 
         return view('order.edit.edit-current-order', compact(
-            'orderID', 'menu_name', 'quantity'
-            ));
+            'orderID',
+            'menu_name',
+            'quantity'
+        ));
     }
 
     public function editCurrentStatus(Request $request)
@@ -90,7 +96,9 @@ class CustomerOrder extends Controller
         $id = $request->dataid;
 
         $cus_ID = DB::table('customer_order')
-                    ->where('customer_id', $id)->first();
+            ->where('customer_id', $id)->first();
+
+        Mail::to($cus_ID->email)->send(new CustomerReview($cus_ID->first_name . ' ' . $cus_ID->last_name, $cus_ID->customer_id));
 
         DB::table('customer_completed')->insert([
             'customer_id'  => $cus_ID->customer_id,
@@ -125,8 +133,8 @@ class CustomerOrder extends Controller
     public function viewSingleOrderHistory($id)
     {
         $orderID = DB::table('customer_completed')
-                            ->where('customer_id', $id)
-                                ->first();
+            ->where('customer_id', $id)
+            ->first();
 
         $menu_name = explode(", ", $orderID->menu_name);
         $quantity  = explode(", ", $orderID->quantity);
@@ -136,6 +144,9 @@ class CustomerOrder extends Controller
     public function destroy(Request $request)
     {
         $id = $request->dataid;
+        $cus = DB::table('customer_order')->where('customer_id', $id)->first();
+        Mail::to($cus->email)->send(new CustomerOrderCancel());
+
         DB::table('customer_order')->where('customer_id', $id)->delete();
         return redirect()->back()->with('status', 'Customer Deleted');
     }

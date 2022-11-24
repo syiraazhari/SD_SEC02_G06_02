@@ -1,11 +1,15 @@
 {
+  "resources/font/SeoulHangang.ttf": {
+    "file": "assets/SeoulHangang.b5d38bf5.ttf",
+    "src": "resources/font/SeoulHangang.ttf"
+  },
   "resources/js/app.js": {
     "file": "assets/app.ab93cf8a.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.ac81e540.css",
+    "file": "assets/app.d97335e7.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

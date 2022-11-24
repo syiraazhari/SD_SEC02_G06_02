@@ -5,7 +5,8 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 
-class CartService {
+class CartService
+{
     const MINIMUM_QUANTITY = 1;
     const DEFAULT_INSTANCE = 'shopping-cart';
 

@@ -9,7 +9,8 @@
             <div class="md:m-10 m-5 flex-grow">
                 <div class="mb-5">
                     <a href="{{ route('view-staff') }}"
-                        class="px-5 py-2 rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
+                        class="px-5 py-2 rounded-sm font-poppins capitalize shadow-md bg-primary
+                        hover:bg-yellow-200">
                         Back To View
                     </a>
                 </div>
@@ -26,7 +27,9 @@
                         </div>
                         <div class="grid border border-t-0 grid-cols-2 text-center font-poppins">
                             <div class="border-b border-r py-2 font-bold">Name</div>
-                            <div class="border-b py-2 font-bold">{{ $staff->first_name . ' ' . $staff->last_name }}</div>
+                            <div class="border-b py-2 font-bold">
+                                {{ $staff->first_name . ' ' . $staff->last_name }}
+                            </div>
                             <div class="border-b border-r py-2">Birthdate</div>
                             <div class="border-b py-2">{{ $staff->birthdate }}</div>
                             <div class="border-b border-r py-2">Email Address</div>
@@ -44,6 +47,5 @@
                 @endforeach
             </div>
         </x-flex-view>
-
     </x-body>
 @endsection

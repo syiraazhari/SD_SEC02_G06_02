@@ -48,32 +48,30 @@
 
                                     <div class="my-2">
                                         <label class="text-secondary " for="password">New Password</label>
-                                        <x-input-password placeholder="New Password" id="password" name="password"
-                                            required />
+                                        <x-input-password placeholder="New Password" id="password"
+                                        name="password" required />
                                     </div>
-
 
                                     <div class="my-2">
                                         <label class="text-secondary " for="password_confirmation">Confirm
                                             Password</label>
-                                        <x-input-password placeholder="Confirm Password" id="password_confirmation"
-                                            name="password_confirmation" required />
+                                        <x-input-password placeholder="Confirm Password"
+                                        id="password_confirmation" name="password_confirmation" required />
                                     </div>
 
                                     <div class='flex justify-end'>
                                         <button type="submit"
-                                            class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white hover:bg-slate-500">
+                                            class="ml-3 bg-slate-800 px-3 py-1 rounded-sm text-white
+                                             hover:bg-slate-500">
                                             Save
                                         </button>
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </x-flex-view>
-
     </x-body>
 @endsection

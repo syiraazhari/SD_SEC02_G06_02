@@ -11,7 +11,9 @@
                         @forelse ($categories as $category)
                             <li class="mr-2">
                                 <a href="{{ $category->id }}"
-                                    class="bg-white rounded-full border inline-block my-3 border-gray-300 drop-shadow-md p-2 px-5 {{ request()->is('view-menu/' . "$category->id") ? 'bg-primary' : '' }}">
+                                    class="bg-white rounded-full border inline-block my-3
+                                    border-gray-300 drop-shadow-md p-2 px-5
+                                    {{ request()->is('view-menu/' . "$category->id") ? 'bg-primary' : '' }}">
                                     {{ $category->name }}
                                 </a>
                             </li>
@@ -19,7 +21,6 @@
                         @endforelse
                     </ul>
                 </div>
-
             </section>
 
             <section class="m-3">
@@ -27,7 +28,6 @@
                 @if ($nameCategory != null )
                     <h3 class="text-xl">{{ $nameCategory->name }} - Just For You</h3>
                 @endif
-
 
                 <div class="my-5 grid grid-cols-2 gap-5 px-5 place-items-stretch">
                     @forelse ($menus as $menu)
@@ -42,12 +42,7 @@
                         <p>Sorry, Currently There is no menu</p>
                     @endforelse
                 </div>
-
             </section>
-
-
-
         </main>
-
     </div>
 </x-guest-layout>

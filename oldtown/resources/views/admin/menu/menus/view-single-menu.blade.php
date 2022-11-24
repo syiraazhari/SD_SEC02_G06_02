@@ -9,7 +9,8 @@
             <div class="md:m-10 m-5 flex-grow">
                 <div class="mb-5">
                     <a href="{{ route('menu-view') }}"
-                        class="px-5 py-2 rounded-sm font-poppins capitalize shadow-md bg-primary hover:bg-yellow-200">
+                        class="px-5 py-2 rounded-sm font-poppins capitalize shadow-md bg-primary
+                        hover:bg-yellow-200">
                         Back To View
                     </a>
                 </div>
@@ -41,6 +42,5 @@
                 @endforeach
             </div>
         </x-flex-view>
-
     </x-body>
 @endsection

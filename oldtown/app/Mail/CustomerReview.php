@@ -16,9 +16,14 @@ class CustomerReview extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $name;
+    public $customer_id;
+
+    public function __construct($name, $id)
     {
-        //
+        $this->name = $name;
+        $this->customer_id = $id;
     }
 
     /**
@@ -28,6 +33,6 @@ class CustomerReview extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.order-completed');
+        return $this->markdown('mail.order-completed');
     }
 }
