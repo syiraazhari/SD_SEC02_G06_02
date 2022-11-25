@@ -1,27 +1,46 @@
-<h1>🔥 SD_SEC02_G06_02 🔥</h1>
+SD_SEC02_G06_02
 
-<h3>🖊️ List of things to start running 🖊️</h3>
+🖊️ INSTALLATION MANUAL 
+
+<!-- 
+Make sure that php folder is on your path environment variable and
+Make sure that you uncomment extension=openssl and extension=pdo_mysql, extension=mbstring, extension=curl in your
+php.ini file in your php folder then follow step below
+ -->
+
+1. Install Composer & NodeJS
+2. Run terminal 
+3. On terminal cd oldtown folder directory and run command "composer install & composer update",
+4. run npm install and npm update command
+5. run php artisan serve and open new terminal tab with in oldtown folder directory run npm run dev command
+6. open the localhost url at php artisan serve terminal tab 
   
-  <ul>
-        <li>Composer</li>
-        <li>Laravel</li>
-        <li>NodeJs</li>
-        <li>Terminal</li>
-  </ul>
-  
-<p> Open your terminal and cd to this folder </p>
+Github Link Source Code
+https://github.com/syiraazhari/SD_SEC02_G06_02
 
-<p> Then type `php artisan serve` to start the project </p>
+LINK WEBSITE PROJECT (hosting using hostinger)
+https://youngwhitecoffee.online/ 
 
-<img src="README_IMAGES/php%20artisan%20serve.png">
+LIST OF USERNAME AND PASSWORD
 
-<p> Then open a new terminal without closing the first one and type `npm run dev` to run vite</p>  
-<img src="README_IMAGES/vite%20run.png">
+FOR DATABASE:
+USER: root
+<!-- Password none-->
+PASSWORD: 
 
-<h2>🚫 Do not close both of these terminal 🚫</h2>
-<hr>
+the url is on the php artisan serve terminal:
+FOR ADMIN LOGIN 
+URL: theurl with /login directory route
+EMAIL: adamimran@gmail.com
+password: adamimran
 
-<p> Now you are set 😄</p>
+//for staff
+EMAIL: staff email
+PASSWORD: oldtown@123
 
-[LARAVEL DOCS] (https://laravel.com/docs/9.x) <br>
-[TAILWINDCSS DOCS] (https://tailwindcss.com/docs/installation)
+
+
+
+
+
+
